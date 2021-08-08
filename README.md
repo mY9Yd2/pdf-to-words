@@ -1,8 +1,9 @@
 ### Usage
+Install `poppler-utils` with your package manager
 ```bash
 $ mkdir pdf raw-text output
 ```
-Put your PDF files in pdf/ then:
+Put your PDF files in `pdf/` then:
 ```bash
 $ ./pdfToText.sh
 $ ./main.py
