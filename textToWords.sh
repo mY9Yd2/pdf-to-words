@@ -21,7 +21,14 @@ find raw-text/ -name '*.txt' | while read -r line; do
     # raw-text/foobar.txt --> output/foobar.txt
     newFilename=$(echo "$line" | sed 's/raw-text\//output\//g')
 
-    sed 'y/AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ/aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz/' < "$line" | sed 's/[^aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz]/ /g' | sed ':a;N;$!ba;s/\n/ /g' | tr -s '[:space:]' | tr '[:space:]' '\n' | grep .. | sort | uniq -u > "$newFilename"
+    sed 'y/AÁBCDEÉFGHIÍJKLMNOÓÖŐPQRSTUÚÜŰVWXYZ/aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz/' < "$line" \
+        | sed 's/[^aábcdeéfghiíjklmnoóöőpqrstuúüűvwxyz]/ /g' \
+        | sed ':a;N;$!ba;s/\n/ /g' \
+        | tr -s '[:space:]' \
+        | tr '[:space:]' '\n' \
+        | grep .. \
+        | sort \
+        | uniq -u > "$newFilename"
 
     # lets see
 
