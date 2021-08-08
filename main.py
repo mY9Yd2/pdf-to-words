@@ -12,12 +12,19 @@
 import re
 import os
 
+
 def processFile(fPath, fName):
     f = open(fPath + "/" + fName, "r", encoding="utf-8")
     lines = f.read(-1)
     f.close()
 
-    allowed_chars = ["a", "á", "b", "c", "d", "e", "é", "f", "g", "h", "i", "í", "j", "k", "l", "m", "n", "o", "ó", "ö", "ő", "p", "q", "r", "s", "t", "u", "ú", "ü", "ű", "v", "w", "x", "y", "z", "A", "Á", "B", "C", "D", "E", "É", "F", "G", "H", "I", "Í", "J", "K", "L", "M", "N", "O", "Ó", "Ö", "Ő", "P", "Q", "R", "S", "T", "U", "Ú", "Ü", "Ű", "V", "W", "X", "Y", "Z"]
+    allowed_chars = [
+        "a", "á", "b", "c", "d", "e", "é", "f", "g", "h", "i", "í", "j", "k",
+        "l", "m", "n", "o", "ó", "ö", "ő", "p", "q", "r", "s", "t", "u", "ú",
+        "ü", "ű", "v", "w", "x", "y", "z", "A", "Á", "B", "C", "D", "E", "É",
+        "F", "G", "H", "I", "Í", "J", "K", "L", "M", "N", "O", "Ó", "Ö", "Ő",
+        "P", "Q", "R", "S", "T", "U", "Ú", "Ü", "Ű", "V", "W", "X", "Y", "Z"
+    ]
 
     output = ""
 
@@ -29,21 +36,23 @@ def processFile(fPath, fName):
             output += " "
 
     # replace multiple spaces with a single space
+    # and transform all word to lowercase
     # and convert to array
     output = re.sub("\s+", " ", output).lower().split()
 
-    # sort by lenght and transform all word to lowercase
-    output = sorted(output, key=lambda x: (-len(x),x.lower()))
+    # sort by lenght
+    output = sorted(output, key=lambda x: (-len(x), x))
 
     # remove 1 lenght "words"
     output = [d for d in output if len(d) > 1]
 
     # dedup
-    output = {d:None for d in output}.keys()
+    output = {d: None for d in output}.keys()
 
     #print(output)
     with open("./output/" + fName, "w", encoding="utf-8") as of:
         of.write('\n'.join(output))
+
 
 def main():
 
@@ -53,6 +62,7 @@ def main():
     for file in files:
         if os.path.isfile(os.path.join(mPath, file)):
             processFile(mPath, file)
+
 
 if __name__ == "__main__":
     main()
