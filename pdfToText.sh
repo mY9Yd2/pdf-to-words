@@ -24,5 +24,5 @@ do
     newFile="${file/${rPDF}/${newLOC}}"
     newFile="${newFile//${rPDF}/txt}"
     
-    pdftotext -layout $file $newFile
+    pdftotext -layout "$file" "$newFile"
 done

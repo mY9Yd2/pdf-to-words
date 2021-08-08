@@ -9,7 +9,8 @@ $ ./pdfToText.sh
 $ ./main.py
 ```
 ### Contributing
-Please use `editorconfig` and `yapf`.
+Please use `editorconfig`, `shellcheck` and `yapf`.
 ```bash
 $ yapf --style pep8 --in-place main.py
+$ shellcheck pdfToText.sh
 ```
