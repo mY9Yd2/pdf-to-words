@@ -23,14 +23,9 @@ then
     exit
 fi
 
-rPDF="pdf"
-newLOC="raw-text"
+find pdf/ -name '*.pdf' | while read -r line; do
+    # pdf/foobar.pdf --> raw-text/foobar.txt
+    newFilename=$(echo "$line" | sed 's/pdf\//raw-text\//g' | sed 's/.pdf/.txt/g')
 
-for file in ./pdf/*
-do
-    # output filename and location
-    newFile="${file/${rPDF}/${newLOC}}"
-    newFile="${newFile//${rPDF}/txt}"
-    
-    pdftotext -layout "$file" "$newFile"
+    pdftotext -layout "$line" "$newFilename"
 done

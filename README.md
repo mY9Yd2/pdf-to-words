@@ -6,11 +6,10 @@ $ mkdir pdf raw-text output
 Put your PDF files in `pdf/` then:
 ```bash
 $ ./pdfToText.sh
-$ ./main.py
+$ ./textToWords.sh
 ```
 ### Contributing
-Please use `editorconfig`, `shellcheck` and `yapf`.
+Please use `editorconfig`, `shellcheck`.
 ```bash
-$ yapf --style pep8 --in-place main.py
-$ shellcheck pdfToText.sh
+$ shellcheck foobar.sh
 ```
